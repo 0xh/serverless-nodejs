@@ -3,22 +3,23 @@
 	"version": "1.0.0",
 	"license": "ISC",
 	"dependencies": {
-	  "aws-sdk": "^2.263.1",
-	  "bluebird": "^3.5.1",
-	  "dotenv": "^6.0.0",
-	  "joi": "^13.4.0",
-	  "require-dir": "^1.0.0",
-	  "winston": "^3.0.0",
-	  "winston-raven-sentry": "^1.0.1"
+		"aws-sdk": "^2.263.1",
+		"bluebird": "^3.5.1",
+		"dotenv": "^6.0.0",
+		"joi": "^13.4.0",
+		"require-dir": "^1.0.0",
+		"winston": "^3.0.0",
+		"winston-raven-sentry": "^1.0.1"
 	},
 	"devDependencies": {
-	  "babel-core": "^6.26.3",
-	  "babel-plugin-transform-node-env-inline": "^0.4.3",
-	  "babel-preset-env": "^1.7.0",
-	  "coffee-loader": "^0.9.0",
-	  "coffeescript": "^2.3.1",
-	  "serverless-webpack": "^5.1.5",
-	  "webpack": "^4.12.1",
-	  "webpack-node-externals": "^1.7.2"
+		"babel-core": "^6.26.3",
+		"babel-plugin-transform-node-env-inline": "^0.4.3",
+		"babel-preset-env": "^1.7.0",
+		"coffee-loader": "^0.9.0",
+		"coffeescript": "^2.3.1",
+		"serverless-offline": "^3.25.4",
+		"serverless-webpack": "^5.1.5",
+		"webpack": "^4.12.1",
+		"webpack-node-externals": "^1.7.2"
 	}
-  }
+}

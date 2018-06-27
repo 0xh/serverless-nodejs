@@ -1,6 +1,7 @@
 service: serverless-service
 
 plugins:
+  - serverless-offline
   - serverless-webpack
 
 custom:
