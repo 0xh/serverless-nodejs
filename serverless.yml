@@ -1,0 +1,48 @@
+service: serverless-service
+
+plugins:
+  - serverless-webpack
+
+custom:
+  defaultStage: dev
+  profiles:
+    dev: bitrush
+    prod: crypto-solutions
+  webpack:
+    packager: yarn
+    includeModules: true
+
+package:
+  individually: true
+  include:
+    - ./config/*
+
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: nodejs8.10
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${self:custom.profiles.${self:provider.stage}}
+  memorySize: 128
+  timeout: 300
+  logRetentionInDays: 14
+  deploymentBucket:
+    name: "${self:service).serverless.deployments"
+    serverSideEncryption: AES256
+
+functions:
+  test:
+    handler: index.testHandler
+    name: test
+    reservedConcurrency: 1
+    events:
+      - http:
+          path: /test
+          method: get
+
+resources:
+  Resources:
+    ApiGatewayRestApi:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: "${self:service)"
