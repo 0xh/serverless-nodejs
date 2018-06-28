@@ -1,18 +1,18 @@
-
 export default class Container
+	constructor: ->
+		@instances = {}
+		@singletonFactories = {}
+		@factories = {}
 
-	constructor:->
+	defineGetterProperty: (alias, name)->
+		if alias of this
+			throw new Error("alias '#{alias}' already exists in container")
 
-		@instances 				= {}
-		@singletonFactories 	= {}
-		@factories 				= {}
+		Object.defineProperty this, alias,
+			get: =>
+				@get name
 
-	defineGetterProperty:(alias, name)->
-		Object.defineProperty @, alias,
-			get:=>
-				return @make name
-
-	defineAliases:(name)->
+	defineAliases: (name)->
 		aliases = [
 			name
 			@toCamelCase name
@@ -25,30 +25,38 @@ export default class Container
 	toCamelCase: (str)->
 		return str
 			.replace /\s(.)/g, ($1)-> return $1.toUpperCase()
-			.replace /[\.\-\_]([a-z]{1})/g, ($1, $2)-> return $2.toUpperCase()
+			.replace /[\.\-\_]([a-z])/g, ($1, $2)-> return $2.toUpperCase()
 			.replace /\s/g, ''
 
-	instance:(name, instance)->
+	instance: (name, instance)->
 		@instances[name] = instance
 		@defineAliases name
 		return @
 
-	singleton:(name, factory)->
+	singleton: (name, factory)->
 		@singletonFactories[name] = factory
 		@defineAliases name
 		return @
 
-	bind:(name, factory)->
+	value: (name, value) ->
+		@instances[name] = value
+		@defineAliases name
+		return this
+
+	bind: (name, factory)->
 		@factories[name] = factory
 		@defineAliases name
 		return @
 
-	# construct an object instance.
-	make: (name, ...args)->
-		# check if the instance has already been
-		# created as a singleton
-		if (result = @instances[name])
-			return result
+	make: (...args) ->
+		@get(args...)
+
+# construct an object instance.
+	get: (name, ...args)->
+# check if the instance has already been
+# created as a singleton
+		if (name of @instances)
+			return @instances[name]
 
 		# check if the instance is a singleton
 		# and construct it.

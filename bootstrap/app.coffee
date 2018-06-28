@@ -1,11 +1,9 @@
-
-import Container 		from '../src/core/container'
-import ConfigLoader 	from '../src/core/config-loader'
-import dotenv	 		from 'dotenv'
-import winston			from 'winston'
+import Container    from '../src/core/container'
+import ConfigLoader from '../src/core/config-loader'
+import dotenv       from 'dotenv'
+import winston      from 'winston'
 
 export default (kernels = []) ->
-
 	container = new Container
 
 	# ----------------------------------------
@@ -29,6 +27,8 @@ export default (kernels = []) ->
 	logger = new winston.Logger {
 		level: config.logging.level
 	}
+
+	console.log config
 
 	if drivers.includes 'sentry'
 		Sentry = require 'winston-raven-sentry'
@@ -64,7 +64,7 @@ export default (kernels = []) ->
 		for serviceProvider in providers
 			await serviceProvider.boot()
 
-
+		
 		# # ----------------------------------------
 		# # Fase 7: start the kernels
 
@@ -76,4 +76,4 @@ export default (kernels = []) ->
 		logger.error error
 
 		# This means every uncaught error will exit the application
-		process.exit()
+		process.exit(1)

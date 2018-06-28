@@ -1,4 +1,4 @@
-
 import bootstrap from './bootstrap/app'
 
-app = bootstrap()
+bootstrap().catch (e) => console.log e
+

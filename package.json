@@ -8,11 +8,12 @@
 		"dotenv": "^6.0.0",
 		"joi": "^13.4.0",
 		"require-dir": "^1.0.0",
-		"winston": "^3.0.0",
+		"winston": "^2.4.3",
 		"winston-raven-sentry": "^1.0.1"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",
+		"babel-plugin-transform-es2015-modules-commonjs-optimized": "^6.16.0",
 		"babel-plugin-transform-node-env-inline": "^0.4.3",
 		"babel-preset-env": "^1.7.0",
 		"coffee-loader": "^0.9.0",
