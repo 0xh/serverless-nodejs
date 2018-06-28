@@ -1,5 +1,5 @@
 
-export default
+export default (
 	level: 'info'
 	drivers: [
 		'console'
@@ -17,3 +17,4 @@ export default
 			debug: 				env 'DEBUG'
 			autoBreadcrumbs: 	true
 			maxBreadcrumbs: 	150
+)

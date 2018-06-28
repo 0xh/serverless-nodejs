@@ -1,8 +1,7 @@
-
-export default
-	env: 	env 'ENV', 'local'
-	name: 	env 'NAME', 'serverless-service'
-	debug: 	env 'DEBUG', false
+export default {
+	env: env 'ENV', 'local'
+	name: env 'NAME', 'serverless-service'
+	debug: env 'DEBUG', false
 
 	secret: [
 		env 'SECRET_1'
@@ -11,8 +10,6 @@ export default
 	]
 
 	services: [
-		__dirname + '/../src/service-provider/action'
-		__dirname + '/../src/service-provider/core'
-		__dirname + '/../src/service-provider/middleware'
-		__dirname + '/../src/service-provider/rules'
+		__dirname + '/../src/provider/henk'
 	]
+}

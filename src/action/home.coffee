@@ -1,9 +1,13 @@
+import Joi from 'joi'
+import Provider from '../core/provider'
 
-import Action from '../core/action'
-
-export default class Home extends Action
+export default class Home extends Provider
+	fields:
+		params:
+			id: Joi.string()
 
 	handle: (ctx) ->
+		@fields
 
 		data = {
 			meta: {
@@ -13,3 +17,7 @@ export default class Home extends Action
 		}
 
 		await ctx.render 'pages/home', data
+
+
+Home.fields
+

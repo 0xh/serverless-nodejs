@@ -1,3 +1,0 @@
-ENV = "local"
-DEBUG = true
-NAME = "serverless-service"
